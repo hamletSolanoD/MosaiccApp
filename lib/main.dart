@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mosaicc/TextAreaEntry.dart';
+import 'package:mosaicc/Widgets/JournalWidgets/TextAreaEntry.dart';
+
 
 void main() {
   runApp(newApp());
