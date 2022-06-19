@@ -81,13 +81,19 @@ class _TextAreaEntryState extends State<TextAreaEntry> {
     super.dispose();
   }
 
+@override
+initState() {
+  super.initState();
+
+ // Add listeners to this class
+}
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Container contBuild = Container(
       child: Column(
         children: [
-          PreferredSize(
-              preferredSize: Size.fromWidth(100.0),
+          Container(
+            width: 350,
              child: AppBar(
               automaticallyImplyLeading: false, // hides leading widget
               elevation: 0,
@@ -95,7 +101,7 @@ class _TextAreaEntryState extends State<TextAreaEntry> {
                   "Entry",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.transparent,
                 actions: <Widget> [TextButton(
                     onPressed: () => {_addNewEntryEvent()},
                     child: const Text("Add Entry")),
@@ -138,6 +144,9 @@ class _TextAreaEntryState extends State<TextAreaEntry> {
         ],
       ),
     );
+     
+
+    return contBuild;
   }
 
   void _addNewEntryEvent() {
