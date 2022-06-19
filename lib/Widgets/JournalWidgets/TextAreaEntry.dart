@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class TextAreaEntry extends StatefulWidget {
@@ -40,44 +39,30 @@ class _TextAreaEntryState extends State<TextAreaEntry> {
     setState(() {
       _entrys.add(_createNewContainer());
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    print(_entrys.length);
     return Container(
       child: Column(children: [
         Row(
-          children:  [
+          children: [
             const Text(
               "Entry",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-                 Expanded(child: SizedBox.shrink()), // <-- Expanded
+            Expanded(child: SizedBox.shrink()), // <-- Expanded
             TextButton(
                 onPressed: () => {_addNewEntryEvent()},
-                child:  const Text("Add  Entry"))
+                child: const Text("Add  Entry"))
           ],
         ),
-
-  
-  Row(
-      children: <Widget>[
-        Expanded(
-          child: SizedBox(
-            height: 200.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: _entrys ,
-          
-            ),
-          ),
-        ),
-      ])
- 
-
-
+        CarouselSlider(
+            items: _entrys,
+            options: CarouselOptions(
+                height: 600, autoPlay: false, disableCenter: true,enableInfiniteScroll: false,enlargeCenterPage: true,
+                ))
       ]),
     );
   }
