@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mosaicc/Widgets/GeneralWidgets/prueba.dart';
 import 'package:mosaicc/Widgets/JournalWidgets/TextAreaEntry.dart';
 
 
