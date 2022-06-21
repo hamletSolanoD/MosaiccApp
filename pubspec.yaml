@@ -18,6 +18,7 @@ dependencies:
   timeago: 3.1.0
   url_launcher: 6.0.15
   carousel_slider: ^4.1.1
+  audioplayers: ^1.0.1
 
 
 dev_dependencies:
