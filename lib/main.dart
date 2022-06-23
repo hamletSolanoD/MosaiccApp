@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mosaicc/Widgets/views/JournalWidgets/MediaEntry.dart';
+import 'package:mosaicc/Widgets/views/JournalWidgets/TextAreaEntry.dart';
 
 
 void main() {
@@ -21,7 +22,15 @@ class newApp extends StatelessWidget {
         ),
         body:
         Scrollbar(
-          child: SingleChildScrollView(scrollDirection: Axis.vertical,child: MediaEntry(),)
+          child: SingleChildScrollView(scrollDirection: Axis.vertical,child: 
+          Column( children: [          
+          MediaEntry(),
+          TextAreaEntry() 
+          ],)
+
+          
+          
+          )
      
 
 
