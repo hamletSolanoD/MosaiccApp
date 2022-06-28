@@ -83,7 +83,6 @@ class _TextAreaEntryState extends State<TextAreaEntry> {
 @override
 initState() {
   super.initState();
-
  // Add listeners to this class
 }
   @override
