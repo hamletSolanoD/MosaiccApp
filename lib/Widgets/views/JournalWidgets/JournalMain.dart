@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mosaicc/Widgets/views/JournalWidgets/DetailsJournalWidget.dart';
 class JournalMain extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -8,10 +9,11 @@ class JournalMain extends StatefulWidget {
 }
 
 class JournalMainState extends State<JournalMain> {
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-      return Container(color: Colors.red );
+      return Padding(padding: EdgeInsets.fromLTRB(20, 10, 20, 10), child: DetailsJournalWidget());
   }
 
 

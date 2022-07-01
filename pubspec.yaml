@@ -19,7 +19,9 @@ dependencies:
   url_launcher: 6.0.15
   carousel_slider: ^4.1.1
   audioplayers: ^1.0.1
-
+  geolocator: ^9.0.0
+  weather: ^2.0.1
+  device_info_plus: ^4.0.0
 
 dev_dependencies:
 

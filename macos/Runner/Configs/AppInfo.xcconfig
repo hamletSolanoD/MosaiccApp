@@ -8,7 +8,7 @@
 PRODUCT_NAME = mosaicc
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.mosaicc
+PRODUCT_BUNDLE_IDENTIFIER = com.mosaicc.mosaiccApp
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2022 com.example. All rights reserved.
