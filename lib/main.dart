@@ -62,14 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(_screens[_selectedScreenIndex]["title"]),
       ),
-      body: PageView(
-          controller: _mainPageController,
-          onPageChanged: (newIndex) {
-            setState(() {
-              _selectedScreenIndex = newIndex;
-            });
-          },
-          children: (_screens.map((e) => e["screen"] as Widget)).toList()),
+      body:
+      
+      _screens.map((e) => e["screen"] as Widget).toList()[_selectedScreenIndex],  
+      
+      
+      
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // Fixed
         backgroundColor: Colors.white, // <-- This works for fixed
