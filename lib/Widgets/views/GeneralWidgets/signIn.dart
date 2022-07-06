@@ -22,7 +22,8 @@ void _showSignInError(BuildContext context, Exception exception) {
 }
 Future<void> _signInAnonymously(BuildContext context) async {
     try {
-      await manager.signInAnonymously();
+      final credentials = await FirebaseAuth.instance.signInAnonymously();
+      print('${credentials.user.uid}');
     } on Exception catch (e) {
       _showSignInError(context, e);
     }
