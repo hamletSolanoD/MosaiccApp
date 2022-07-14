@@ -1,8 +1,6 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/Widgets/controllers/auth.dart';
-
 
 class signIn extends StatelessWidget {
   const signIn({
@@ -14,13 +12,14 @@ class signIn extends StatelessWidget {
   final bool isLoading;
   static const Key emailPasswordKey = Key('email-password');
 
-void _showSignInError(BuildContext context, Exception exception) {
+  void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
         exception.code == 'ERROR_ABORTED_BY_USER') {
       return;
     }
-}
-Future<void> _signInAnonymously(BuildContext context) async {
+  }
+
+  Future<void> _signInAnonymously(BuildContext context) async {
     try {
       final credentials = await FirebaseAuth.instance.signInAnonymously();
       print('${credentials.user.uid}');
@@ -33,7 +32,7 @@ Future<void> _signInAnonymously(BuildContext context) async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Tracker'),
+        title: Text('Mosaicc'),
         elevation: 2.0,
       ),
       body: _buildContent(context),
@@ -48,17 +47,61 @@ Future<void> _signInAnonymously(BuildContext context) async {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          SizedBox(height: 48.0),
-          TextButton(
-            child: Text("Anonymus"),
-            onPressed:  () =>_signInAnonymously(context),
+          Text(
+            "Welcome Back",
+            style: TextStyle(
+                color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 30),
           ),
+          Text(
+            "ready for a new day?",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: Colors.black45),
+          ),
+          SizedBox(
+            height: 48,
+          ),
+          Text("Email"),
+          TextField(
+              decoration: InputDecoration(
+                  fillColor: Colors.white, filled: true, counterText: '')),
+          SizedBox(
+            height: 30,
+          ),
+          Text("Password"),
+          TextField(
+              decoration: InputDecoration(
+                  fillColor: Colors.white, filled: true, counterText: '')),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+                onPressed: () => {}, child: Text("Forgot password?")),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          TextButton(
+              onPressed: () => {_signInAnonymously(context)},
+              child: const Text("Login",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white)),
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Colors.blue))))),
+          SizedBox(
+            height: 48,
+          ),
+          Center(child: Text("Don't have an account?")),
+          TextButton(onPressed: () => {}, child: Text("Sign up!"))
         ],
       ),
     );
   }
-
-
-
-
 }
