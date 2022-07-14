@@ -43,7 +43,9 @@ class signIn extends StatelessWidget {
   Widget _buildContent(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(16.0),
-      child: Column(
+      child: SingleChildScrollView(
+        child: Column(
+          
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -101,7 +103,7 @@ class signIn extends StatelessWidget {
           Center(child: Text("Don't have an account?")),
           TextButton(onPressed: () => {}, child: Text("Sign up!"))
         ],
-      ),
+      ),),
     );
   }
 }
