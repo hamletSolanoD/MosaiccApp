@@ -1,16 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/Widgets/controllers/auth.dart';
+import 'package:mosaicc/Widgets/views/GeneralWidgets/SignUp.dart';
 
 class signIn extends StatelessWidget {
-  const signIn({
+   signIn({
     Key key,
     @required this.manager,
     @required this.isLoading,
   }) : super(key: key);
   final Auth manager;
   final bool isLoading;
-  static const Key emailPasswordKey = Key('email-password');
+  TextEditingController EmailController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+
+
+
 
   void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
@@ -27,6 +32,31 @@ class signIn extends StatelessWidget {
       _showSignInError(context, e);
     }
   }
+
+  void _signInWithEmail(BuildContext context) {
+
+ try {
+      final credentials = FirebaseAuth.instance.signInWithEmailAndPassword(email: EmailController.text, password:PasswordController.text);
+            print('${credentials.toString()}');
+
+    } on Exception catch (e) {
+      _showSignInError(context, e);
+    }
+
+    
+  }
+
+ void _registerNewUser (BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  SignUp()),
+  );
+}
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +75,11 @@ class signIn extends StatelessWidget {
       padding: EdgeInsets.all(16.0),
       child: SingleChildScrollView(
         child: Column(
-          
+
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          SizedBox(height: 140,),
           Text(
             "Welcome Back",
             style: TextStyle(
@@ -67,12 +98,15 @@ class signIn extends StatelessWidget {
           Text("Email"),
           TextField(
               decoration: InputDecoration(
-                  fillColor: Colors.white, filled: true, counterText: '')),
+                  fillColor: Colors.white, filled: true, counterText: ''),
+                  controller:EmailController ,
+                  ),
           SizedBox(
             height: 30,
           ),
           Text("Password"),
           TextField(
+            controller: PasswordController,
               decoration: InputDecoration(
                   fillColor: Colors.white, filled: true, counterText: '')),
           Align(
@@ -84,7 +118,7 @@ class signIn extends StatelessWidget {
             height: 30,
           ),
           TextButton(
-              onPressed: () => {_signInAnonymously(context)},
+              onPressed: () => {_signInWithEmail(context)},
               child: const Text("Login",
                   style: TextStyle(
                       fontSize: 25,
@@ -101,7 +135,7 @@ class signIn extends StatelessWidget {
             height: 48,
           ),
           Center(child: Text("Don't have an account?")),
-          TextButton(onPressed: () => {}, child: Text("Sign up!"))
+          TextButton(onPressed: () => _registerNewUser(context), child: Text("Sign up!"))
         ],
       ),),
     );
