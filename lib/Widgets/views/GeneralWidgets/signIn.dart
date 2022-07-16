@@ -1,14 +1,22 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/Widgets/controllers/auth.dart';
 import 'package:mosaicc/Widgets/views/GeneralWidgets/SignUp.dart';
+import 'package:mosaicc/Widgets/views/GeneralWidgets/homePage.dart';
 
 class signIn extends StatelessWidget {
-   signIn({
+   signIn(
+    StreamController<UserCredential>  UserCredentials,
+    {
     Key key,
     @required this.manager,
     @required this.isLoading,
-  }) : super(key: key);
+  }) : super(key: key){
+    this.UserCredentials = UserCredentials;
+  }
+   StreamController<UserCredential>  UserCredentials;
   final Auth manager;
   final bool isLoading;
   TextEditingController EmailController = TextEditingController();
@@ -33,10 +41,19 @@ class signIn extends StatelessWidget {
     }
   }
 
-  void _signInWithEmail(BuildContext context) {
+  Future<void> _signInWithEmail(BuildContext context) async {
 
  try {
-      final credentials = FirebaseAuth.instance.signInWithEmailAndPassword(email: EmailController.text, password:PasswordController.text);
+       final credentials = await FirebaseAuth.instance.signInWithEmailAndPassword(email: EmailController.text, password:PasswordController.text);
+
+            UserCredentials.add(credentials);
+            Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>  homePage(UserCredentials)),
+  );
+
+            
+
             print('${credentials.toString()}');
 
     } on Exception catch (e) {
@@ -106,6 +123,7 @@ class signIn extends StatelessWidget {
           ),
           Text("Password"),
           TextField(
+               obscureText: true,
             controller: PasswordController,
               decoration: InputDecoration(
                   fillColor: Colors.white, filled: true, counterText: '')),

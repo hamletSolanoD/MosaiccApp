@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/Widgets/views/GeneralWidgets/SignUp.dart';
@@ -16,12 +19,14 @@ Future<void> main() async {
 }
 
 class newApp extends StatelessWidget {
+              StreamController<UserCredential> UserCredentials = StreamController();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
         title: "Mosaicc",
         theme: ThemeData(primarySwatch: Colors.lightBlue),
-        home: signIn());
+        home: signIn(UserCredentials));
   }
 }

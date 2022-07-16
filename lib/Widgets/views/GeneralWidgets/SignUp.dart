@@ -1,10 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
+
   _signInState createState() => _signInState();
 }
 
 class _signInState extends State<SignUp> {
+  TextEditingController EmailController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+  TextEditingController Password2Controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +25,13 @@ class _signInState extends State<SignUp> {
     );
   }
 
+  Future<void> _createUserWithEmailAndPassword() async {
+   await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: EmailController.text, password: PasswordController.text);
+  }
+
   Widget _buildContent(BuildContext context) {
+   
     // TODO: implement build
     return Container(
         child: SingleChildScrollView(
@@ -52,30 +66,37 @@ class _signInState extends State<SignUp> {
                           fillColor: Colors.white,
                           filled: true,
                           counterText: ''),
+                      controller: EmailController,
                     ),
                     SizedBox(
                       height: 30,
                     ),
                     Text("Password"),
                     TextField(
-                        decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            counterText: '')),
+                         obscureText: true,
+                      decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          counterText: ''),
+                      controller: PasswordController,
+                    ),
                     SizedBox(
                       height: 30,
                     ),
                     Text("Confirm password"),
                     TextField(
-                        decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            counterText: '')),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          counterText: ''),
+                      controller: Password2Controller,
+                    ),
                     SizedBox(
                       height: 30,
                     ),
                     TextButton(
-                        onPressed: () => {},
+                        onPressed: () => {_createUserWithEmailAndPassword()},
                         child: const Text("Get started!",
                             style: TextStyle(
                                 fontSize: 25,
