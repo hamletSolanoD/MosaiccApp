@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/ui/Utils/route_generator.dart';
+import 'package:mosaicc/ui/pages/AuthPages/signIn.dart';
 
 import '../firebase_options.dart';
-import 'widgets/signIn.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

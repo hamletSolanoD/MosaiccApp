@@ -12,7 +12,9 @@ class FirebaseLoginRepository extends AbstractLoginRepository {
       final credentials = await FirebaseAuth.instance.signInAnonymously();
       print('${credentials.user.uid}');
       return credentials;
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+        print(e);
+    }
     return null;
   }
 
@@ -23,7 +25,9 @@ class FirebaseLoginRepository extends AbstractLoginRepository {
           .signInWithEmailAndPassword(email: username, password: password);
       print('${credentials.user.uid}');
       return credentials;
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      print(e);
+    }
         return null;
   }
 
@@ -35,7 +39,9 @@ class FirebaseLoginRepository extends AbstractLoginRepository {
         .createUserWithEmailAndPassword(email:username, password:password);
       print('${credentials.user.uid}');
       return credentials;
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+        print(e);
+    }
         return null;
   }
 

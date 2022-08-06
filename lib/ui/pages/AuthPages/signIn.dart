@@ -4,6 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/data/repositories/firebase_login_repository.dart';
 
+import '../../widgets/alertDIalog.dart';
+
+
 class signIn extends StatelessWidget {
   signIn(
     StreamController<UserCredential> UserCredentials, {
@@ -23,16 +26,19 @@ class signIn extends StatelessWidget {
     Future<UserCredential> userFeature =
         (firebaseLoginRepository.signInWithEmail(
             username: EmailController.text, password: PasswordController.text));
-    userFeature.then((user) => {
-          if (user != null)
+   
+    userFeature.then((user) {
+         if (user != null)
             {
-              UserCredentials.add(user),
+              UserCredentials.add(user);
               Navigator.of(context)
-                  .pushNamed("/homePage", arguments: UserCredentials)
+                  .pushNamed("/homePage", arguments: UserCredentials);
             }
           else
-            {}
-        });
+            {
+              alertDialog().showAlertDialog(context,"Authentication failed"); 
+            }
+    },);
   }
 
   Future<void> _signInWithEmail(BuildContext context) async {
@@ -40,16 +46,19 @@ class signIn extends StatelessWidget {
     Future<UserCredential> userFeature =
         (firebaseLoginRepository.signInWithEmail(
             username: EmailController.text, password: PasswordController.text));
-    userFeature.then((user) => {
-          if (user != null)
+  
+    userFeature.then((user) {
+         if (user != null)
             {
-               UserCredentials.add(user),
+              UserCredentials.add(user);
               Navigator.of(context)
-                  .pushNamed("/homePage", arguments: UserCredentials)
+                  .pushNamed("/homePage", arguments: UserCredentials);
             }
           else
-            {}
-        });
+            {
+              alertDialog().showAlertDialog(context,"Authentication failed"); 
+            }
+    },);
   }
 
   void _registerNewUser(BuildContext context) {

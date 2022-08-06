@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mosaicc/data/repositories/firebase_login_repository.dart';
+import 'package:mosaicc/ui/Utils/route_generator.dart';
+import 'package:mosaicc/ui/widgets/alertDIalog.dart';
 
 class SignUp extends StatefulWidget {
   final StreamController<UserCredential> UserCredentials;
@@ -38,16 +40,20 @@ class _signUpState extends State<SignUp> {
     Future<UserCredential> userFeature =
         (firebaseLoginRepository.signUp(
             username: EmailController.text, password: PasswordController.text));
-    userFeature.then((user) => {
-          if (user != null)
+
+
+    userFeature.then((user) {
+         if (user != null)
             {
-              UserCredentials.add(user),
+              UserCredentials.add(user);
               Navigator.of(context)
-                  .pushNamed("/homePage", arguments: UserCredentials)
+                  .pushNamed("/homePage", arguments: UserCredentials);
             }
           else
-            {}
-        });
+            {
+              alertDialog().showAlertDialog(context,"Error registering new user"); 
+            }
+    },);
   }
 
   Widget _buildContent(BuildContext context) {
@@ -133,7 +139,8 @@ class _signUpState extends State<SignUp> {
                       height: 30,
                     ),
                     Center(child: Text("Already part of the community?")),
-                    TextButton(onPressed: () => {}, child: Text("Login!"))
+                    TextButton(onPressed: () => { Navigator.of(context)
+                  .pushNamed("/homePage", arguments: UserCredentials)    }, child: Text("Login!"))
                   ],
                 ),
                 padding: EdgeInsets.fromLTRB(40, 0, 40, 0))));

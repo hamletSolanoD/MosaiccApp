@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mosaicc/ui/widgets/SignUp.dart';
 
-import '../widgets/homePage.dart';
-import '../widgets/signIn.dart';
+import '../pages/AuthPages/SignUp.dart';
+import '../pages/AuthPages/signIn.dart';
+import '../pages/homePage.dart';
 class RouteGenerator{
   
 
@@ -14,6 +14,7 @@ return MaterialPageRoute(builder:(_){
 
 );
 }
+
 
 static Route<dynamic> generateRoute(RouteSettings settings){
   final args = settings.arguments;
