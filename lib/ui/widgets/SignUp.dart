@@ -2,17 +2,25 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mosaicc/data/repositories/firebase_login_repository.dart';
 
 class SignUp extends StatefulWidget {
+  final StreamController<UserCredential> UserCredentials;
 
-  _signInState createState() => _signInState();
+  const SignUp(this.UserCredentials);
+
+  _signUpState createState() => _signUpState(UserCredentials);
 }
 
-class _signInState extends State<SignUp> {
+class _signUpState extends State<SignUp> {
   TextEditingController EmailController = TextEditingController();
   TextEditingController PasswordController = TextEditingController();
   TextEditingController Password2Controller = TextEditingController();
 
+  StreamController<UserCredential> UserCredentials;
+  _signUpState(StreamController<UserCredential> UserCredentials) {
+    this.UserCredentials = UserCredentials;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +34,23 @@ class _signInState extends State<SignUp> {
   }
 
   Future<void> _createUserWithEmailAndPassword() async {
-   await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: EmailController.text, password: PasswordController.text);
+    FirebaseLoginRepository firebaseLoginRepository = FirebaseLoginRepository();
+    Future<UserCredential> userFeature =
+        (firebaseLoginRepository.signUp(
+            username: EmailController.text, password: PasswordController.text));
+    userFeature.then((user) => {
+          if (user != null)
+            {
+              UserCredentials.add(user),
+              Navigator.of(context)
+                  .pushNamed("/homePage", arguments: UserCredentials)
+            }
+          else
+            {}
+        });
   }
 
   Widget _buildContent(BuildContext context) {
-   
     // TODO: implement build
     return Container(
         child: SingleChildScrollView(
@@ -73,7 +92,7 @@ class _signInState extends State<SignUp> {
                     ),
                     Text("Password"),
                     TextField(
-                         obscureText: true,
+                      obscureText: true,
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,

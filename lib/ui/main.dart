@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mosaicc/Widgets/views/GeneralWidgets/SignUp.dart';
-import 'package:mosaicc/Widgets/views/GeneralWidgets/signIn.dart';
-import 'package:mosaicc/Widgets/views/JournalWidgets/JournalMain.dart';
-import 'package:mosaicc/Widgets/views/Media/MediaMain.dart';
-import 'package:mosaicc/Widgets/views/Money/MoneyMain.dart';
-import 'package:mosaicc/firebase_options.dart';
+import 'package:mosaicc/ui/Utils/route_generator.dart';
+
+import '../firebase_options.dart';
+import 'widgets/signIn.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +25,7 @@ class newApp extends StatelessWidget {
     return MaterialApp(
         title: "Mosaicc",
         theme: ThemeData(primarySwatch: Colors.lightBlue),
-        home: signIn(UserCredentials));
+        home: signIn(UserCredentials),
+        onGenerateRoute: RouteGenerator.generateRoute,);
   }
 }

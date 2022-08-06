@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mosaicc/Widgets/views/JournalWidgets/JournalMain.dart';
-import 'package:mosaicc/Widgets/views/Media/MediaMain.dart';
-import 'package:mosaicc/Widgets/views/Money/MoneyMain.dart';
+import 'package:mosaicc/ui/pages/JournalWidgets/JournalMain.dart';
+import 'package:mosaicc/ui/pages/Media/MediaMain.dart';
+import 'package:mosaicc/ui/pages/Money/MoneyMain.dart';
 
 class homePage extends StatefulWidget {
   final StreamController<UserCredential> UserCredentials;
