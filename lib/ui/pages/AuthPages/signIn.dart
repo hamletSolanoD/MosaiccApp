@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/data/repositories/firebase_login_repository.dart';
+import 'package:mosaicc/ui/pages/JournalWidgets/Widgets/HCalendarSelector.dart';
 
 import '../../widgets/alertDIalog.dart';
-
 
 class signIn extends StatelessWidget {
   signIn(
@@ -20,25 +20,23 @@ class signIn extends StatelessWidget {
   TextEditingController EmailController = TextEditingController();
   TextEditingController PasswordController = TextEditingController();
 
-
   Future<void> _signInAnonymously(BuildContext context) async {
     FirebaseLoginRepository firebaseLoginRepository = FirebaseLoginRepository();
     Future<UserCredential> userFeature =
         (firebaseLoginRepository.signInWithEmail(
             username: EmailController.text, password: PasswordController.text));
-   
-    userFeature.then((user) {
-         if (user != null)
-            {
-              UserCredentials.add(user);
-              Navigator.of(context)
-                  .pushNamed("/homePage", arguments: UserCredentials);
-            }
-          else
-            {
-              alertDialog().showAlertDialog(context,"Authentication failed"); 
-            }
-    },);
+
+    userFeature.then(
+      (user) {
+        if (user != null) {
+          UserCredentials.add(user);
+          Navigator.of(context)
+              .pushNamed("/homePage", arguments: UserCredentials);
+        } else {
+          alertDialog().showAlertDialog(context, "Authentication failed");
+        }
+      },
+    );
   }
 
   Future<void> _signInWithEmail(BuildContext context) async {
@@ -46,19 +44,18 @@ class signIn extends StatelessWidget {
     Future<UserCredential> userFeature =
         (firebaseLoginRepository.signInWithEmail(
             username: EmailController.text, password: PasswordController.text));
-  
-    userFeature.then((user) {
-         if (user != null)
-            {
-              UserCredentials.add(user);
-              Navigator.of(context)
-                  .pushNamed("/homePage", arguments: UserCredentials);
-            }
-          else
-            {
-              alertDialog().showAlertDialog(context,"Authentication failed"); 
-            }
-    },);
+
+    userFeature.then(
+      (user) {
+        if (user != null) {
+          UserCredentials.add(user);
+          Navigator.of(context)
+              .pushNamed("/homePage", arguments: UserCredentials);
+        } else {
+          alertDialog().showAlertDialog(context, "Authentication failed");
+        }
+      },
+    );
   }
 
   void _registerNewUser(BuildContext context) {
@@ -145,7 +142,9 @@ class signIn extends StatelessWidget {
             SizedBox(
               height: 48,
             ),
-            Center(child: Text("Don't have an account?")),
+            Center(child: Text("Don't have an account?") 
+            
+            ),
             TextButton(
                 onPressed: () => _registerNewUser(context),
                 child: Text("Sign up!"))
