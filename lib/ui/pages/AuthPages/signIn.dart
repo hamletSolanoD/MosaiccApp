@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/data/repositories/firebase_login_repository.dart';
-import 'package:mosaicc/ui/pages/JournalWidgets/Widgets/HCalendarSelector.dart';
 
 import '../../widgets/alertDIalog.dart';
 

@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mosaicc/ui/Utils/route_generator.dart';
 import 'package:mosaicc/ui/pages/AuthPages/signIn.dart';
+import 'package:mosaicc/ui/pages/JournalWidgets/JournalMain.dart';
 
 import '../firebase_options.dart';
 
@@ -25,7 +26,7 @@ class newApp extends StatelessWidget {
     return MaterialApp(
         title: "Mosaicc",
         theme: ThemeData(primarySwatch: Colors.lightBlue),
-        home: signIn(UserCredentials),
+        home: JournalMain(),
         onGenerateRoute: RouteGenerator.generateRoute,);
   }
 }

@@ -26,9 +26,21 @@ class _HCalendarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _innerButton = OutlinedButton(
-        child: Text(DateFormat('EEEE').format(_toDisplay).substring(0, 3) +
-            "\n" +
-            _toDisplay.day.toString()));
+      
+        child: Text(
+      DateFormat('EEEE').format(_toDisplay).substring(0, 3) +
+          "\n\n" +
+          _toDisplay.day.toString(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(color: Colors.white),
+    ),
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    primary: Colors.white,
+    side: BorderSide(color: Colors.white, width: 1,),
+    
+    
+    ));
     return Padding(padding: EdgeInsets.all(3), child: _innerButton);
   }
 }
@@ -79,7 +91,7 @@ class _hcalendarState extends State<HCalendarSelector> {
             value: _months[_month],
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
-            style: const TextStyle(color: Colors.blue),
+            style: const TextStyle(color: Colors.white),
             items: _months.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -103,13 +115,14 @@ class _hcalendarState extends State<HCalendarSelector> {
       carouselController: _datesCarouselController,
       items: _DatesToShow,
       options: CarouselOptions(
+        
         initialPage: 0,
-        height: 50,
-        viewportFraction: 0.3,
+        height: 70,
+        viewportFraction: 0.19,
         autoPlay: false,
-        disableCenter: true,
+        disableCenter: false,
         enableInfiniteScroll: false,
-        enlargeCenterPage: true,
+        enlargeCenterPage: false,
       ),
     );
   }
